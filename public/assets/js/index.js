@@ -53,7 +53,7 @@ const handleClick = (event) => {
   if (target.is(`button[name="delete-btn"]`)) {
     const itemId = target.attr("data-items-id")
     console.log("delete", itemId)
-    //redirent to /edit/itemId
+    
 
   }
 }
