@@ -1,11 +1,19 @@
-const { Router } = require("express");
+console.log("hi");
 
-// const view = require("./view");
-// const api = require("./api");
+const express = require("express");
+const path = require("path");
 
-const router = Router();
+const routes = require("./src/routes");
 
-// router.use("/", view);
-// router.use("/api", api);
+const PORT = 4000;
 
-module.exports = router;
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../public")));
+app.use(routes);
+
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`)
+);
