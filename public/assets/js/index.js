@@ -1,47 +1,24 @@
 console.log("hello from client");
 
-const shoppingListElement = $("#shopping-list")
+const NotesListElement = $("#Notes-list")
 
 
-const shoppingList = async () => {
 
-// not rendering items-list
 
-// fetch items from api
 
-// const getNotesList = async () => {
+
+const getNotesList = async () => {
  
-//   const response = await fetch("/api/items")
-//   const data = await response.json()
+  const response = await fetch("/api/items")
+  const data = await response.json()
  
   
-//   return data
-  
-return {
-  items:[
-  {
-    id:"08f9c16f-d4da-483c-b68d-6d87c22776ab",
-    name:"item 1",
-  },
-  {
-    id:"b9a949db-c28e-4ce6-819f-bf01f49d8f6b",
-    name:"item 2",
-  },
-  {
-    id:"fd9d4b36-b2be-4dca-b725-3cf88f658e14",
-    name:"item 3",
-  },
-  {
-    id:"e60a270c-5a9e-4881-9fdd-b5e615e360d9",
-    name:"item 4",
-  }
-]
-}
+  return data
+ 
+
 }
 
-// }
 
-// render list items
 
 const handleClick = (event) => {
   const target = $(event.target)
@@ -72,15 +49,15 @@ const renderListItems = (items) => {
   </li>`
   })
   .join("");
-shoppingListElement.append(`<ul class="list-group" id="shopping-list-container">${listItems}</ul>`)
-$("#shopping-list-container").click(handleClick)
+NotesListElement.append(`<ul class="list-group" id="items-list-container">${listItems}</ul>`)
+$("#items-list-container").click(handleClick)
 
 };
 
 
 
 const onReady = async () => {
- const { items } = await shoppingList();
+ const { items } = await NotesList();
  renderListItems(items);
 }
 $(document).ready(onReady)
