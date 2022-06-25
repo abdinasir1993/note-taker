@@ -1,24 +1,26 @@
 console.log("hello from client");
 
-const NotesListElement = $("#Notes-list")
+const NotesListElement = $("#notes-list")
+
+const NewNoteElement = $("#icons")
 
 
+// not rendering items-list
 
-
-
+// fetch items from api
 
 const getNotesList = async () => {
  
   const response = await fetch("/api/items")
   const data = await response.json()
- 
+ return data
   
-  return data
+
  
 
 }
 
-
+// render list items
 
 const handleClick = (event) => {
   const target = $(event.target)
@@ -36,6 +38,7 @@ const handleClick = (event) => {
 }
 
 const renderListItems = (items) => {
+  console.log("its working")
   const listItems = items.map((item) => {
     return  `<li
     class="list-group-item d-flex flex-row flex-wrap justify-content-between align-items-center"
@@ -57,7 +60,7 @@ $("#items-list-container").click(handleClick)
 
 
 const onReady = async () => {
- const { items } = await NotesList();
+ const { items } = await getNotesList();
  renderListItems(items);
 }
 $(document).ready(onReady)
