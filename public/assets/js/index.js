@@ -4,11 +4,13 @@ const NotesListElement = $("#notes-list");
 
 const NewNoteElement = $("#icons");
 
-const newNoteform = $("#new-note-form");
+const newNoteForm = $("#new-note-form");
 
 const listContainer = $("#list-container");
 
 const navbar = $("#navbar");
+
+const notesInput = $("#notes-item-input");
 
 // not rendering items-list
 
@@ -20,22 +22,52 @@ const getNotesList = async () => {
   return data;
 };
 
-const handleClickSaveEdit = (event) => {
+const handleClickNewNote = (event) => {
   const target = $(event.target);
 
-  if (target.is('i[name= "save-note]')) {
-    const saveNote = target.attr(NewNoteElement);
-    console.log("saveNote");
-  }
-  if (target.is('i[name="new-note"]')) {
-    const newNote = target.attr("save");
+  if (target.is('i[name= "new-note"]')) {
+    const newNote = target.attr("new-note");
 
     console.log("its working");
-    renderNoteform();
+    renderNoteForm();
   }
 };
 
-navbar.click(handleClickSaveEdit);
+//this is not working
+
+const handleClickSavedNote = async (event) => {
+  event.preventDefault();
+  const target = $(event.target);
+  if (target.is('i[name= "save-note"]')) {
+    const saveNote = target.attr("save-note");
+    console.log("saveNote");
+  }
+  const newItem = notesInput.val();
+  if (!newItem) {
+    console.log("handle error");
+  } else {
+    console.log("newItem");
+    // create a post request payload
+
+    const payload = {
+      name: newItem,
+    };
+
+    // make a post requst to api/items
+    const response = await fetch("/api/items", {
+      method: "POST",
+      body: JSON.stringify{payload},
+      Headers: {
+        "content-type": "application/json",
+      },
+
+    });
+    const data = await response.json();
+
+    window.location.assign("/");
+    console.log(data);
+  }
+};
 
 const handleClick = (event) => {
   const target = $(event.target);
@@ -80,12 +112,13 @@ const renderListItems = (items) => {
   $("#items-list-container").click(handleClick);
 };
 
-const renderNoteform = () => {
+const renderNoteForm = () => {
   console.log("render");
 
   listContainer.append(`<div new-notes-form class="col-8">
   <input
     class="note-title"
+    id = "notes-item-input"
     placeholder="Note Title"
     maxlength="28"
     type="text"
@@ -94,6 +127,8 @@ const renderNoteform = () => {
 </div>`);
 };
 
+navbar.click(handleClickNewNote);
+navbar.click(handleClickSavedNote);
 const onReady = async () => {
   const { items } = await getNotesList();
   renderListItems(items);

@@ -1,10 +1,11 @@
-const { Router } = require ("express");
+const { Router } = require("express");
 
-const {getItems} = require("../controllers/items")
+const { getItems, createItem } = require("../controllers/items");
 
-const router = Router()
+const router = Router();
 
-router.get ("/", getItems)
+router.get("/", getItems);
 
-module.exports = router
+router.post("/", createItem);
 
+module.exports = router;
