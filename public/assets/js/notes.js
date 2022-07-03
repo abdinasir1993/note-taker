@@ -1,20 +1,17 @@
-const NewNoteElement = $("#icons")
+const NewNoteElement = $("#icons");
 
 const handleClick = (event) => {
-    
-const target = $(event.target)
+  const target = $(event.target);
 
-if (target.is('i[name= "save-note]')) {
+  if (target.is('i[name= "save-note]')) {
+    const saveNote = target.attr("name");
+    console.log(saveNote);
+  }
+  if (target.is('i[name="new-note"]')) {
+    const newNote = target.attr("name");
+    console.log(newNote);
+  }
+};
 
-const saveNote = target.attr("name")
-console.log(saveNote)
-}
-if (target.is('i[name="new-note"]')) {
-    
-   const newNote = target.attr("name")
-   console.log(newNote)
-    }
-}
-
-NewNoteElement.click(handleClick)
-console.log("hi")
+NewNoteElement.click(handleClick);
+console.log("hi");

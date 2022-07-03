@@ -1,11 +1,13 @@
-const { Router } = require("express");
+const { Router } = require('express');
 
-const { getItems, createItem } = require("../controllers/items");
+const { getItems, createItem, deleteItem } = require('../controllers/items');
 
 const router = Router();
 
-router.get("/", getItems);
+router.get('/', getItems);
 
-router.post("/", createItem);
+router.post('/', createItem);
+
+router.delete('/noteId', deleteItem);
 
 module.exports = router;
