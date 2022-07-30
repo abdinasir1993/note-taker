@@ -19,9 +19,9 @@
 
 ## My links
 
--github url: [https://github.com/abdinasir1993/weather-dashboard](https://github.com/abdinasir1993/weather-dashboard)
+-github url: [https://github.com/abdinasir1993/note-taker/tree/dev](https://github.com/abdinasir1993/note-taker/tree/dev)
 
--deployed url:[https://abdinasir1993.github.io/weather-dashboard/](https://abdinasir1993.github.io/weather-dashboard/)
+-deployed url:[https://note-taker-app1993.herokuapp.com/](https://note-taker-app1993.herokuapp.com/)
 
 ## Mock-Ups
 
